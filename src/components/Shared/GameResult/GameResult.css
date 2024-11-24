@@ -1,0 +1,66 @@
+.game-result {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-result h3 {
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.result-message {
+  font-size: 1.1rem;
+  color: #495057;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.choices-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.choice-display {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.choice-display .label {
+  color: #6c757d;
+}
+
+.choice-display .value {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.choice-display.player {
+  background-color: #e3f2fd;
+  border: 1px solid #bbdefb;
+}
+
+.choice-display.opponent {
+  background-color: #fbe9e7;
+  border: 1px solid #ffccbc;
+}
+
+@media (max-width: 480px) {
+  .game-result {
+    padding: 1rem;
+  }
+
+  .choices-display {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,177 @@
+.nash-equilibrium {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.game-info {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.game-info h2 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.game-info p {
+  color: #34495e;
+  line-height: 1.6;
+}
+
+.equilibrium-info {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.equilibrium-info h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.equilibrium-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.equilibrium-info li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.strategy-explanation {
+  margin-top: 20px;
+}
+
+.strategy-explanation h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.strategy-explanation ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.strategy-explanation li {
+  margin-bottom: 8px;
+  color: #34495e;
+}
+
+.game-main {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.game-controls {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.choice-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.choice-button {
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.choice-button:hover:not(.disabled) {
+  background-color: #2980b9;
+}
+
+.choice-button.disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.round-result {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.game-history {
+  margin-top: 30px;
+}
+
+.game-history table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.game-history th,
+.game-history td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.game-history th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.game-history tr:hover {
+  background-color: #f8f9fa;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.player-choice, .bot-choice, .round-score, .round-message {
+  font-size: 14px;
+}
+
+.round-score {
+  color: #666;
+}
+
+.round-message {
+  font-style: italic;
+  color: #444;
+}
+
+.game-result {
+  margin-top: 20px;
+  width: 100%;
+}

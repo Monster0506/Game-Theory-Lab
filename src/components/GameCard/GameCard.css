@@ -1,0 +1,89 @@
+.game-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-card-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.game-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.status-badge.ready {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.status-badge.coming-soon {
+  background-color: #FFC107;
+  color: #333;
+}
+
+.game-card-content {
+  padding: 1.5rem;
+}
+
+.game-card-content h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.game-card-content p {
+  margin: 0 0 1.5rem 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+.play-button {
+  display: inline-block;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  text-align: center;
+  text-decoration: none;
+}
+
+.play-button.active {
+  background-color: #3498db;
+  color: white;
+}
+
+.play-button.active:hover {
+  background-color: #2980b9;
+}
+
+.play-button.disabled {
+  background-color: #ecf0f1;
+  color: #95a5a6;
+  cursor: not-allowed;
+}

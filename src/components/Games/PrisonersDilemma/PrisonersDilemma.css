@@ -1,0 +1,122 @@
+.prisoners-dilemma {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.game-info h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.game-info p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.game-scores {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.score-box {
+  background: #f8f9fa;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 150px;
+}
+
+.score-box h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.score-box p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3498db;
+  margin: 0;
+}
+
+.game-choices {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.choice-button {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: #3498db;
+  color: white;
+}
+
+.choice-button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.choice-button.selected {
+  background: #2ecc71;
+}
+
+.game-result {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.game-result h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.game-history {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.game-history h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.history-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-item span {
+  color: #666;
+}

@@ -1,0 +1,125 @@
+.rock-paper-scissors {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.game-info h1 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.game-info p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.game-scores {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.score-box {
+  background: #f8f9fa;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 150px;
+}
+
+.score-box h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.score-box p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3498db;
+  margin: 0;
+}
+
+.game-choices {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.choice-button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.choice-button:hover {
+  background: #2980b9;
+}
+
+.choice-button.selected {
+  background: #2ecc71;
+}
+
+.round-result {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.game-history {
+  margin-top: 2rem;
+}
+
+.game-history h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+}
+
+.history-item {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-item span {
+  color: #666;
+}
+
+.bot-strategy {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.strategy-selector {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  margin-left: 1rem;
+}
