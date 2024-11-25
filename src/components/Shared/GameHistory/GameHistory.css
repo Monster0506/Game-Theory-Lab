@@ -27,10 +27,6 @@
   border-radius: 8px;
   background-color: white;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 1.5rem;
 }
 
 .history-item:hover {
@@ -44,60 +40,47 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  white-space: nowrap;
+  margin-bottom: 0.5rem;
 }
 
 .round-content {
   display: flex;
-  gap: 2rem;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .history-entry {
-  padding: 0.5rem 1rem;
-  background-color: #f8f9fa;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  color: #495057;
-  border: 1px solid #e9ecef;
-}
-
-/* Specific styles for Prisoner's Dilemma */
-.choices {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  display: flex;
   gap: 1rem;
-  width: 100%;
+  align-items: center;
+  padding: 0.25rem 0;
 }
 
-.player-choice,
-.bot-choice,
-.round-score {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 500;
-  text-align: center;
-}
-
-.player-choice {
-  background-color: #e3f2fd;
-  color: #1976d2;
-  border: 1px solid #bbdefb;
-}
-
-.bot-choice {
-  background-color: #fbe9e7;
-  color: #d84315;
-  border: 1px solid #ffccbc;
-}
-
-.round-score {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-  border: 1px solid #c8e6c9;
+.entry-label {
   font-weight: 600;
+  color: #495057;
+  min-width: 100px;
+}
+
+.entry-value {
+  color: #212529;
+}
+
+.player-choice, .bot-choice {
+  margin-right: 1rem;
+  color: #495057;
+}
+
+.round-score {
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.no-history {
+  text-align: center;
+  color: #6c757d;
+  padding: 2rem;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
@@ -106,17 +89,11 @@
   }
 
   .history-item {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
     padding: 1rem;
   }
 
   .round-number {
     border-bottom: 1px solid #e9ecef;
     padding-bottom: 0.5rem;
-  }
-
-  .choices {
-    grid-template-columns: 1fr;
   }
 }

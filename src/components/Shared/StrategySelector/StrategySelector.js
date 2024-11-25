@@ -11,9 +11,9 @@ const StrategySelector = ({
     <div className="strategy-selector">
       <h3>{title}</h3>
       <div className="strategy-options">
-        {Object.entries(strategies).map(([key, strategy]) => (
+        {strategies.map((strategy) => (
           <div 
-            key={key}
+            key={strategy.name}
             className={`strategy-card ${currentStrategy.name === strategy.name ? 'selected' : ''}`}
             onClick={() => onStrategyChange(strategy)}
           >

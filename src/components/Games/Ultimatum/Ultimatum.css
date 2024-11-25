@@ -1,0 +1,50 @@
+.ultimatum-game {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.round-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.round-content:last-child {
+  border-bottom: none;
+}
+
+.round-content span {
+  flex: 1;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.player-choice,
+.bot-choice,
+.round-score {
+  font-weight: 500;
+}
+
+.choice-button {
+  padding: 8px 16px;
+  margin: 4px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.choice-button:hover {
+  background-color: #1565c0;
+}
+
+.choice-button:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+}

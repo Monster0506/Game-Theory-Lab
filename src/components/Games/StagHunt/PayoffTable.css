@@ -1,0 +1,48 @@
+.payoff-table {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.payoff-table h3 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.payoff-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.payoff-table th,
+.payoff-table td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.payoff-table th {
+  background-color: #e9ecef;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.payoff-table td:first-child {
+  font-weight: bold;
+  background-color: #e9ecef;
+}
+
+.payoff-notes {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.payoff-notes p {
+  margin: 0.5rem 0;
+}

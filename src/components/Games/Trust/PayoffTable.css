@@ -1,0 +1,82 @@
+.payoff-table {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.payoff-table h3 {
+  margin-top: 0;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.matrix-container {
+  overflow-x: auto;
+}
+
+.payoff-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed;
+}
+
+.payoff-table th,
+.payoff-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+  min-width: 120px;
+}
+
+.payoff-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+}
+
+.vertical-text {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  padding: 15px 0;
+}
+
+.payoff-cell {
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.payoff-cell span {
+  display: inline-block;
+  min-width: 30px;
+  text-align: right;
+}
+
+.payoff-table tr:hover {
+  background-color: #f1f3f5;
+}
+
+.payoff-notes {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.payoff-notes p {
+  margin: 5px 0;
+  color: #495057;
+  font-size: 0.9em;
+}
+
+.positive {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.negative {
+  color: #dc3545;
+  font-weight: 500;
+}

@@ -7,15 +7,26 @@ const GameHistory = ({
   renderRoundContent,
   title = 'Game History'
 }) => {
+  if (!history || history.length === 0) {
+    return (
+      <div className="game-history">
+        <h3>{title}</h3>
+        <div className="history-list">
+          <div className="no-history">No moves yet</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="game-history">
       <h3>{title}</h3>
       <div className="history-list">
         {history.map((round, index) => (
-          <div key={history.length - index - 1} className="history-item">
-            <span className="round-number">
+          <div key={round.round || history.length - index} className="history-item">
+            <div className="round-number">
               {roundLabel} {round.round || history.length - index}
-            </span>
+            </div>
             {renderRoundContent ? (
               renderRoundContent(round)
             ) : (
@@ -23,9 +34,12 @@ const GameHistory = ({
                 {Object.entries(round)
                   .filter(([key]) => !['round'].includes(key))
                   .map(([key, value]) => (
-                    <span key={key} className="history-entry">
-                      {key}: {value}
-                    </span>
+                    <div key={key} className="history-entry">
+                      <span className="entry-label">{key}:</span>
+                      <span className="entry-value">
+                        {typeof value === 'object' ? JSON.stringify(value) : String(value)}
+                      </span>
+                    </div>
                   ))
                 }
               </div>

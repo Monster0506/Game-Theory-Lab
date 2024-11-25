@@ -54,12 +54,21 @@ const preferenceStrategy = {
   }
 };
 
+const friendlyStrategy = {
+  name: 'Friendly',
+  description: 'A simple beginner-friendly strategy',
+  makeChoice: (playerChoice) => {
+    return "MOVIE";
+  }
+};
+
 const strategies = [
   randomStrategy,
   patternLearningStrategy,
   copycatStrategy,
   nashEquilibriumStrategy,
-  preferenceStrategy
+  preferenceStrategy,
+  friendlyStrategy
 ];
 
 export const getAllStrategies = () => strategies;

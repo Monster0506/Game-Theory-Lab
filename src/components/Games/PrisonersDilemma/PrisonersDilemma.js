@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import GameInfo from './GameInfo';
-import ScoreBoard from './ScoreBoard';
-import GameChoices from './GameChoices';
-import RoundResult from './RoundResult';
-import GameHistory from './GameHistory';
-import BotStrategySelector from './BotStrategySelector';
+import GameInfo from '../../Shared/GameInfo/GameInfo';
+import ScoreBoard from '../../Shared/ScoreBoard/ScoreBoard';
+import GameChoices from '../../Shared/ChoiceSelector/ChoiceSelector';
+import GameResult from '../../Shared/GameResult/GameResult';
+import GameHistory from '../../Shared/GameHistory/GameHistory';
+import StrategySelector from '../../Shared/StrategySelector/StrategySelector';
 import { calculateResult } from './GameLogic';
 import { getAllStrategies, getDefaultStrategy } from './botStrategies';
 import PayoffTable from './PayoffTable';
@@ -17,6 +17,11 @@ const PrisonersDilemma = () => {
   const [score, setScore] = useState({ player: 0, bot: 0 });
   const [gameHistory, setGameHistory] = useState([]);
   const [currentStrategy, setCurrentStrategy] = useState(getDefaultStrategy());
+
+  const choices = [
+    { value: 'cooperate', label: 'Cooperate' },
+    { value: 'betray', label: 'Betray' }
+  ];
 
   const handlePlayerChoice = (choice) => {
     const botDecision = currentStrategy.makeChoice(gameHistory);
@@ -52,26 +57,64 @@ const PrisonersDilemma = () => {
     setGameHistory([]);
   };
 
+  const renderRoundContent = (round) => (
+    <div className="round-content">
+      <span className="player-choice">You: {round.player}</span>
+      <span className="bot-choice">Partner: {round.bot}</span>
+      <span className="round-score">
+        Score - You: {round.playerScore} | Partner: {round.botScore}
+      </span>
+    </div>
+  );
+
   return (
-    <div>
-      <div className="prisoners-dilemma">
-        <GameInfo />
-        <PayoffTable />
-        <BotStrategySelector 
-          currentStrategy={currentStrategy}
-          onStrategyChange={handleStrategyChange}
+    <div className="prisoners-dilemma">
+      <GameInfo title="Prisoner's Dilemma" 
+        description="A classic game theory scenario where two prisoners must decide whether to cooperate or betray each other."
+        rules={[
+          "Choose to either cooperate with or betray your partner",
+          "If both cooperate, you both get a moderate sentence",
+          "If both betray, you both get a heavy sentence",
+          "If one betrays while other cooperates, betrayer goes free while cooperator gets maximum sentence"
+        ]}
+      />
+      <PayoffTable />
+      <StrategySelector
+        strategies={getAllStrategies()}
+        currentStrategy={currentStrategy}
+        onStrategyChange={handleStrategyChange}
+        title="Partner Strategy"
+      />
+      <ScoreBoard 
+        scores={score}
+        labels={{ player: 'Your Score', opponent: 'Partner Score' }}
+      />
+      <GameChoices
+        choices={choices}
+        onChoice={handlePlayerChoice}
+        currentChoice={playerChoice}
+        buttonClassName="choice-button"
+      />
+      {result && (
+        <GameResult
+          result={result}
+          choices={{
+            player: playerChoice,
+            opponent: botChoice
+          }}
+          getMessage={(result) => result.message}
+          title="Round Result"
+          choiceLabels={{
+            player: "Your choice",
+            opponent: "Partner's choice"
+          }}
         />
-        <ScoreBoard playerScore={score.player} botScore={score.bot} />
-        <GameChoices onChoice={handlePlayerChoice} currentChoice={playerChoice} />
-        {result && (
-          <RoundResult 
-            result={result}
-            playerChoice={playerChoice}
-            botChoice={botChoice}
-          />
-        )}
-        <GameHistory history={gameHistory} />
-      </div>
+      )}
+      <GameHistory
+        history={gameHistory}
+        renderRoundContent={renderRoundContent}
+        title="Game History"
+      />
     </div>
   );
 };

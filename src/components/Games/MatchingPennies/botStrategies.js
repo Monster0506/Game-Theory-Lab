@@ -1,16 +1,14 @@
 // Bot strategies for Matching Pennies game
-const strategies = [
-  {
+export const strategies = {
+  random: {
     name: 'Random',
-    description: 'Makes random choices between Heads and Tails',
-    makeChoice: (gameHistory) => {
-      return Math.random() < 0.5 ? 'HEADS' : 'TAILS';
-    }
+    description: 'Randomly chooses heads or tails',
+    makeChoice: (gameHistory, currentPlayerMove) => Math.random() < 0.5 ? 'HEADS' : 'TAILS'
   },
-  {
+  PatternLearning: {
     name: 'Pattern Learning',
     description: 'Analyzes player patterns and tries to predict next move',
-    makeChoice: (gameHistory) => {
+    makeChoice: (gameHistory, currentPlayerMove) => {
       if (!gameHistory || gameHistory.length < 3) {
         return Math.random() < 0.5 ? 'HEADS' : 'TAILS';
       }
@@ -38,20 +36,20 @@ const strategies = [
       return Math.random() < 0.5 ? 'HEADS' : 'TAILS';
     }
   },
-  {
+  Copycat: {
     name: 'Copycat',
     description: 'Copies the player\'s last move',
-    makeChoice: (gameHistory) => {
+    makeChoice: (gameHistory, currentPlayerMove) => {
       if (!gameHistory || gameHistory.length === 0) {
         return Math.random() < 0.5 ? 'HEADS' : 'TAILS';
       }
       return gameHistory[gameHistory.length - 1].player;
     }
   },
-  {
+  Counter: {
     name: 'Counter',
     description: 'Plays the opposite of player\'s last move',
-    makeChoice: (gameHistory) => {
+    makeChoice: (gameHistory, currentPlayerMove) => {
       if (!gameHistory || gameHistory.length === 0) {
         return Math.random() < 0.5 ? 'HEADS' : 'TAILS';
       }
@@ -59,14 +57,30 @@ const strategies = [
       return lastPlayerChoice === 'HEADS' ? 'TAILS' : 'HEADS';
     }
   },
-  {
-    name: 'Nash Equilibrium',
-    description: 'Plays the optimal mixed strategy (50-50)',
-    makeChoice: (gameHistory) => {
-      return Math.random() < 0.5 ? 'HEADS' : 'TAILS';
+  heads: {
+    name: 'Always Heads',
+    description: 'Always chooses heads',
+    makeChoice: (gameHistory, currentPlayerMove) => 'HEADS'
+  },
+  tails: {
+    name: 'Always Tails',
+    description: 'Always chooses tails',
+    makeChoice: (gameHistory, currentPlayerMove) => 'TAILS'
+  },
+  friendly: {
+    name: 'Friendly',
+    description: 'A simple beginner-friendly strategy',
+    makeChoice: (gameHistory, currentPlayerMove) => {
+      // Always choose opposite of current player move to maximize bot's payoff
+      return currentPlayerMove === 'HEADS' ? 'TAILS' : 'HEADS';
     }
   }
-];
+};
 
-export const getDefaultStrategy = () => strategies[0];
-export const getAllStrategies = () => strategies;
+export const getBotChoice = (strategy, gameHistory, currentPlayerMove) => {
+  const strategyFn = strategies[strategy] || strategies.random;
+  return strategyFn.makeChoice(gameHistory, currentPlayerMove);
+};
+
+export const getDefaultStrategy = () => strategies.random;
+export const getAllStrategies = () => Object.values(strategies);

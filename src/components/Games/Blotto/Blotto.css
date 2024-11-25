@@ -1,0 +1,188 @@
+.blotto-game {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.troop-allocation {
+  margin: 20px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.troop-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.battlefield-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.battlefield-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.battlefield-input label {
+  font-weight: bold;
+  color: #333;
+}
+
+.battlefield-input input {
+  padding: 6px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.battlefield-input input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.troops-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.randomize-button {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.randomize-button:hover {
+  background-color: #27ae60;
+}
+
+.randomize-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #357abd;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.round-content {
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.allocations {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.player-allocation,
+.bot-allocation {
+  font-family: monospace;
+}
+
+.round-result {
+  font-weight: bold;
+  color: #333;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.result-message {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.battlefield-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.battlefield-result {
+  background-color: white;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.battlefield-result h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.battlefield-result p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.battlefield-result .winner {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.battlefield-result .winner.player-win {
+  color: #e74c3c;
+}
+
+.battlefield-result .winner.opponent-win {
+  color: #3498db;
+}
+
+.battlefield-result .winner.tie {
+  color: #95a5a6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .battlefield-inputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .troops-info {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+}

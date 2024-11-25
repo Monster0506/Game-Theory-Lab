@@ -1,11 +1,5 @@
 // Bot strategies for Prisoner's Dilemma
 export const strategies = {
-  friendly: {
-    name: 'Friendly',
-    description: 'Cooperates 70% of the time, regardless of player choices',
-    makeChoice: () => Math.random() < 0.7 ? 'cooperate' : 'betray'
-  },
-  
   titForTat: {
     name: 'Tit for Tat',
     description: 'Starts by cooperating, then copies your previous move',
@@ -36,6 +30,15 @@ export const strategies = {
     }
   },
 
+  friendly: {
+    name: 'Friendly',
+    description: 'A simple beginner-friendly strategy',
+    makeChoice: (playerChoice) => {
+      // Always betray since it dominates cooperate regardless of player choice
+      return 'betray';
+    }
+  },
+
   gradualTitForTat: {
     name: 'Gradual Tit for Tat',
     description: 'Increases punishment with each betrayal, then apologizes',
@@ -46,32 +49,24 @@ export const strategies = {
       let betrayalCount = 0;
       let isPunishing = false;
       let punishmentCount = 0;
-      
+
       for (let i = gameHistory.length - 1; i >= 0; i--) {
-        const round = gameHistory[i];
-        if (round.player === 'betray') betrayalCount++;
-        if (round.bot === 'betray') punishmentCount++;
-        if (betrayalCount > 0 && punishmentCount < betrayalCount) {
-          isPunishing = true;
-          break;
+        if (gameHistory[i].player === 'betray') {
+          betrayalCount++;
         }
-        if (round.bot === 'cooperate' && round.bot === 'cooperate') {
-          break; // Reset after cooperation
+        if (gameHistory[i].bot === 'betray') {
+          isPunishing = true;
+          punishmentCount++;
+        }
+        if (isPunishing && punishmentCount >= betrayalCount) {
+          break;
         }
       }
 
-      // If punishing, continue until punishment count matches betrayals
-      if (isPunishing && punishmentCount < betrayalCount) {
+      if (betrayalCount > 0 && punishmentCount < betrayalCount) {
         return 'betray';
       }
       
-      // Apologize with two cooperations after punishment
-      const lastTwo = gameHistory.slice(-2);
-      if (lastTwo.length === 2 && 
-          lastTwo.every(round => round.bot === 'betray')) {
-        return 'cooperate';
-      }
-
       return 'cooperate';
     }
   },
@@ -92,7 +87,7 @@ export const strategies = {
     makeChoice: (gameHistory) => {
       if (gameHistory.length < 2) return 'cooperate';
       const lastTwo = gameHistory.slice(-2);
-      return lastTwo.every(round => round.player === 'betray') ? 'betray' : 'cooperate';
+      return lastTwo.every(move => move.player === 'betray') ? 'betray' : 'cooperate';
     }
   },
 
@@ -101,21 +96,22 @@ export const strategies = {
     description: 'Responds to betrayal with two betrayals',
     makeChoice: (gameHistory) => {
       if (gameHistory.length === 0) return 'cooperate';
-      const lastTwo = gameHistory.slice(-2);
       
-      // If last move was betrayal, start punishment
-      if (gameHistory[gameHistory.length - 1].player === 'betray') {
-        return 'betray';
+      // Check if we're in the middle of punishing
+      let isPunishing = false;
+      let punishmentCount = 0;
+      
+      for (let i = gameHistory.length - 1; i >= 0; i--) {
+        if (gameHistory[i].player === 'betray' && punishmentCount < 2) {
+          isPunishing = true;
+        }
+        if (isPunishing) {
+          punishmentCount++;
+          if (punishmentCount >= 2) break;
+        }
       }
       
-      // Continue punishment if we're in first retaliation
-      if (lastTwo.length === 2 && 
-          lastTwo[0].player === 'betray' && 
-          lastTwo[1].bot === 'betray') {
-        return 'betray';
-      }
-      
-      return 'cooperate';
+      return isPunishing && punishmentCount < 2 ? 'betray' : 'cooperate';
     }
   },
 
@@ -123,7 +119,7 @@ export const strategies = {
     name: 'GRIM',
     description: 'Cooperates until betrayed once, then always betrays',
     makeChoice: (gameHistory) => {
-      return gameHistory.some(round => round.player === 'betray') ? 'betray' : 'cooperate';
+      return gameHistory.some(move => move.player === 'betray') ? 'betray' : 'cooperate';
     }
   },
 
@@ -134,14 +130,14 @@ export const strategies = {
       if (gameHistory.length === 0) return 'cooperate';
       
       const lastRound = gameHistory[gameHistory.length - 1];
-      const lastBotChoice = lastRound.bot;
-      const lastBotScore = lastRound.botScore;
+      const lastBotMove = lastRound.bot;
+      const lastPlayerMove = lastRound.player;
       
-      if (lastBotScore >= -1) {
-        return lastBotChoice; // Stay with winning move
-      } else {
-        return lastBotChoice === 'cooperate' ? 'betray' : 'cooperate'; // Switch after losing
-      }
+      // Win = both cooperate or bot betrays while player cooperates
+      const won = (lastBotMove === 'cooperate' && lastPlayerMove === 'cooperate') ||
+                 (lastBotMove === 'betray' && lastPlayerMove === 'cooperate');
+                 
+      return won ? lastBotMove : (lastBotMove === 'cooperate' ? 'betray' : 'cooperate');
     }
   },
 
@@ -149,29 +145,28 @@ export const strategies = {
     name: 'n-Pavlov',
     description: 'Adjusts cooperation probability based on previous payoff',
     makeChoice: (gameHistory) => {
-      const n = 4; // Adjustment factor
       if (gameHistory.length === 0) return 'cooperate';
       
-      const lastRound = gameHistory[gameHistory.length - 1];
-      const lastBotScore = lastRound.botScore;
+      // Calculate average payoff from last n rounds
+      const n = Math.min(5, gameHistory.length);
+      const recentGames = gameHistory.slice(-n);
       
-      // Calculate base probability from previous rounds
-      let baseProb = gameHistory.filter(round => round.bot === 'cooperate').length / gameHistory.length;
-      
-      // Adjust probability based on last payoff
-      if (lastBotScore === -1) { // Reward (R)
-        baseProb = Math.min(baseProb + 1/n, 1);
-      } else if (lastBotScore === -2) { // Punishment (P)
-        baseProb = Math.max(baseProb - 1/n, 0);
-      } else if (lastBotScore === 0) { // Temptation (T)
-        baseProb = Math.min(baseProb + 2/n, 1);
-      } else if (lastBotScore === -3) { // Sucker (S)
-        baseProb = Math.max(baseProb - 2/n, 0);
+      let totalPayoff = 0;
+      for (const game of recentGames) {
+        if (game.bot === 'cooperate' && game.player === 'cooperate') totalPayoff += 3;
+        else if (game.bot === 'betray' && game.player === 'cooperate') totalPayoff += 5;
+        else if (game.bot === 'cooperate' && game.player === 'betray') totalPayoff += 0;
+        else totalPayoff += 1;
       }
+      
+      const avgPayoff = totalPayoff / n;
+      const baseProb = avgPayoff / 5; // Normalize by max payoff
       
       return Math.random() < baseProb ? 'cooperate' : 'betray';
     }
   }
 };
 
-export const getDefaultStrategy = () => strategies.friendly;
+export const getDefaultStrategy = () => strategies.titForTat;
+
+export const getAllStrategies = () => Object.values(strategies);

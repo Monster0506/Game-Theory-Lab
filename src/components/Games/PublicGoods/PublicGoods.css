@@ -1,0 +1,90 @@
+.public-goods {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contribution-selector {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.contribution-selector h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.contribution-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contribution-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid #3498db;
+  background-color: white;
+  color: #3498db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.contribution-button:hover:not(:disabled) {
+  background-color: #3498db;
+  color: white;
+}
+
+.contribution-button:disabled {
+  border-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.contribution-button.selected {
+  background-color: #3498db;
+  color: white;
+}
+
+.round-content {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.contribution-info,
+.pool-info,
+.return-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+}
+
+.contribution-info span,
+.pool-info span,
+.return-info span {
+  flex: 1;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.pool-info {
+  background: #e8f4f8;
+}
+
+.return-info {
+  font-weight: bold;
+}

@@ -19,7 +19,7 @@ const MatchingPennies = () => {
   const [currentStrategy, setCurrentStrategy] = useState(getDefaultStrategy());
 
   const handlePlayerChoice = (choice) => {
-    const botDecision = currentStrategy.makeChoice(gameHistory);
+    const botDecision = currentStrategy.makeChoice(gameHistory, choice);
     setPlayerChoice(choice);
     setBotChoice(botDecision);
 
@@ -116,11 +116,13 @@ const MatchingPennies = () => {
           history={gameHistory}
           renderRoundContent={round => (
             <div className="round-content">
-              <span className="player-choice">You: {round.player}</span>
-              <span className="bot-choice">Bot: {round.bot}</span>
-              <span className="round-score">
-                Score - You: {round.playerScore} | Bot: {round.botScore}
-              </span>
+              <div className="history-entry">
+                <span className="player-choice">You: {String(round.player)}</span>
+                <span className="bot-choice">Bot: {String(round.bot)}</span>
+                <span className="round-score">
+                  Score - You: {String(round.playerScore)} | Bot: {String(round.botScore)}
+                </span>
+              </div>
             </div>
           )}
           title="Game History"

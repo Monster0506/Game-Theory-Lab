@@ -1,0 +1,66 @@
+.trust-game {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.choice-button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  background-color: white;
+  color: #007bff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.choice-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.choice-button.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.round-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.round-content span {
+  padding: 5px 10px;
+  background-color: #f8f9fa;
+  border-radius: 3px;
+}
+
+.round-content .investment {
+  color: #0066cc;
+}
+
+.round-content .multiplied {
+  color: #28a745;
+}
+
+.round-content .returned {
+  color: #dc3545;
+}
+
+.round-content .round-score {
+  color: #6c757d;
+}
+
+.positive {
+  color: #28a745;
+}
+
+.negative {
+  color: #dc3545;
+}
