@@ -61,7 +61,7 @@ An interactive platform for exploring game theory concepts through simulated gam
 
 ## Features
 
-- Interactive gameplay against AI opponents
+- Interactive gameplay against (rule-based) AI opponents
 - Multiple bot strategies for each game
 - Real-time game history tracking
 - Educational explanations of game theory concepts
